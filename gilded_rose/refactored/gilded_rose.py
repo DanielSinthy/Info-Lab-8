@@ -11,6 +11,7 @@ class GildedRose(object):
         self.strategy_mapping = {
             "Aged Brie": AgedBrieItemStrategy(),
             "Backstage passes to a TAFKAL80ETC concert": BackstagePassItemStrategy(),
+            "Sulfuras, Hand of Ragnaros": SulfurasItemStrategy()
         }
 
 
@@ -21,11 +22,14 @@ class GildedRose(object):
 
 class RegularItemStrategy:
     def update_quality(self, item):
-        if item.quality > 0:
-            item.quality -= 1
-        item.sell_in -= 1
-        if item.sell_in < 0 and item.quality > 0:
-            item.quality -= 1                    
+        if item.quality > 50:
+            item.quality = 50
+        else:
+            if item.quality > 0:
+                item.quality -= 1
+            item.sell_in -= 1
+            if item.sell_in < 0 and item.quality > 0:
+                item.quality -= 1
 
 class AgedBrieItemStrategy:
     def update_quality(self, item):
@@ -47,6 +51,13 @@ class BackstagePassItemStrategy:
         item.sell_in -= 1
         if item.sell_in < 0:
             item.quality = 0
+
+class SulfurasItemStrategy:
+    def update_quality(self, item):
+        if item.quality != 80:
+            item.quality = 80
+        if item.sell_in != -1:
+            item.sell_in != -1
 
 class Item:
     def __init__(self, name, sell_in, quality):

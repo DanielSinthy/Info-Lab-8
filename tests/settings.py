@@ -6,9 +6,9 @@ import pytest
 
 # use this to switch between the original and your refactored version.
 
-#from gilded_rose.gilded_rose import GildedRose, Item
+from gilded_rose.original.gilded_rose import GildedRose, Item
 
-from gilded_rose.refactored.gilded_rose import GildedRose, Item
+#from gilded_rose.refactored.gilded_rose import GildedRose, Item
 
 # XFAIL FLAGS
 # use this to be able to refactor without the need to pertaining found
